@@ -5,6 +5,11 @@ import cors from 'cors';
 import { connectDB } from './src/db.js';
 import authRoutes from './src/routes/auth.js';
 import userRoutes from './src/routes/user.js';
+import paymentModeRoutes from './src/routes/paymentModeRoutes.js';
+import expenseAccountRoutes from './src/routes/expenseAccountRoutes.js';
+import headRoutes from "./src/routes/headRoutes.js";
+import subHeadRoutes from "./src/routes/subHeadRoutes.js";
+import voucherEntryRoutes from "./src/routes/voucherEntryRoutes.js";
 
 
 const app = express();
@@ -26,6 +31,14 @@ res.json({ status: 'ok', message: 'API running' });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/payment-modes', paymentModeRoutes);
+app.use("/api/expense-accounts", expenseAccountRoutes);
+app.use("/api/heads", headRoutes);
+app.use("/api/sub-heads", subHeadRoutes);
+app.use("/api/voucher-entries", voucherEntryRoutes);
+app.use("/uploads", express.static("uploads"));
+
+
 
 
 await connectDB();
